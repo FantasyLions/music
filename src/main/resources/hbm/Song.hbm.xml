@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-7-27 7:48:03 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.migu.dto.Song" table="song" catalog="migu">
+        <id name="songid" type="java.lang.Integer">
+            <column name="SONGID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="singer" class="com.migu.dto.Singer" fetch="select">
+            <column name="SINGERID">
+            </column>
+        </many-to-one>
+        <many-to-one name="type" class="com.migu.dto.Type" fetch="select">
+            <column name="TYPEID">
+            </column>
+        </many-to-one>
+        <many-to-one name="albums" class="com.migu.dto.Albums" fetch="select">
+            <column name="ALBUMSID">
+            </column>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME">
+            </column>
+        </property>
+        <property name="writer" type="string">
+            <column name="WRITER">
+            </column>
+        </property>
+        <property name="compose" type="string">
+            <column name="COMPOSE">
+            </column>
+        </property>
+        <property name="lyric" type="string">
+            <column name="LYRIC" length="500">
+            </column>
+        </property>
+        <property name="pic" type="string">
+            <column name="PIC">
+            </column>
+        </property>
+        <property name="initial" type="string">
+            <column name="INITIAL">
+            </column>
+        </property>
+        <property name="hits" type="java.lang.Integer">
+            <column name="HITS">
+            </column>
+        </property>
+        <property name="comitdate" type="date">
+            <column name="COMITDATE" length="10">
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-7-27 7:48:03 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.migu.dto.Albums" table="albums" catalog="migu">
+        <id name="albumsid" type="java.lang.Integer">
+            <column name="ALBUMSID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="singer" class="com.migu.dto.Singer" fetch="select">
+            <column name="SINGERID">
+            </column>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME">
+            </column>
+        </property>
+        <property name="initial" type="string">
+            <column name="INITIAL">
+            </column>
+        </property>
+        <property name="comitdate" type="date">
+            <column name="COMITDATE" length="10">
+            </column>
+        </property>
+        <set name="songs" table="song" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ALBUMSID">
+                </column>
+            </key>
+            <one-to-many class="com.migu.dto.Song" />
+        </set>
+    </class>
+</hibernate-mapping>

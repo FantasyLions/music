@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-7-27 7:48:03 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.migu.dto.Language" table="language" catalog="migu">
+        <id name="lanid" type="java.lang.Integer">
+            <column name="LANID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="language" class="com.migu.dto.Language" fetch="select">
+            <column name="PLID">
+            </column>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME">
+            </column>
+        </property>
+        <set name="languages" table="language" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PLID">
+                </column>
+            </key>
+            <one-to-many class="com.migu.dto.Language" />
+        </set>
+        <set name="singers" table="singer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="LANID">
+                </column>
+            </key>
+            <one-to-many class="com.migu.dto.Singer" />
+        </set>
+    </class>
+</hibernate-mapping>

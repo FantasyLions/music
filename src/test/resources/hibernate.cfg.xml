@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.password">root</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/migu</property>
+  <property name="hibernate.connection.username">root</property>
+  <mapping resource="hbm/Singer.hbm.xml"/>
+  <mapping resource="hbm/Albums.hbm.xml"/>
+  <mapping resource="hbm/Area.hbm.xml"/>
+  <mapping resource="hbm/Language.hbm.xml"/>
+  <mapping resource="hbm/Song.hbm.xml"/>
+  <mapping resource="hbm/Type.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>

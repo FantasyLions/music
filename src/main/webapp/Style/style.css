@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin:0; padding:0; }
+fieldset, img { border:0; }
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:500; }
+
+.tanchuk{ width:460px; position:absolute; left:50%; top:30%; margin:0 0 0 -230px; font-family:"宋体"; color:#444;}
+.tanchuk .tcbj{ width:100%; height:100%; position:absolute; left:0; top:0; background:#7e7d7d; border-radius:5px; filter:Alpha(opacity=60); opacity:0.6; z-index:999;}
+.tanchuk .tcnr{ width:440px; height:auto; padding-bottom:10px; margin:10px; background:#faf9f9; border:#979797 solid 1px; position:relative; z-index:1000; border-radius:5px; overflow:hidden}
+.tcnr .tc_tile{ width:100%; height:43px; text-align:center; font:normal 19px/43px "黑体"; color:#fff; position:relative; text-shadow:2px 2px 1px #555; background:url('../../images/zt/bg_title.jpg') left top repeat-x}
+.tcnr .tc_tile .tc_close{ width:24px; height:22px; position:absolute; right:10px; top:10px; background:url('../../images/zt/ic_oclose.png') right top no-repeat }
+.tcnr .tc_tile .tc_close:hover{ background-position:right bottom}
+.tcnr .tc_haoma{ width:400px; margin:15px 0 20px 15px; padding:5px 0 5px 10px; line-height:25px; border:#E7E5E5 solid 1px; border-radius:3px; position:relative;}
+.tc_haoma span{font-weight:bold; text-decoration:underline; letter-spacing:2px; font-size:14px;}
+.tc_haoma .blue_txt_col{color:#0078c1;}
+.tc_haoma .red_txt_col{color:#DA2830;}
+.tc_haoma .tc_jiang{ width:123px; height:86px; display:inline-block; font-style:normal; position:absolute; right:-10px; top:0; background:url('../../images/zt/jiang.png') left top no-repeat}
+.tcnr .tcdiv{ width:400px; margin:10px 0 5px 20px;}
+.tcnr .tc_bold{ color:#DA2830; font-size:13px;}
+.tcnr .tc_text{ width:120px; height:24px; padding:0; margin:0 5px 0 0; border:#ddd solid 1px; box-shadow:inset 0 0 1px 0px #ddd}
+.tcnr .tc_buton , .share_btn{ width:51px; height:27px; border:0; cursor:pointer; padding:0; margin:0; vertical-align:-9px; background:url('../../images/zt/ic_oclose.png') left top no-repeat}
+.tcnr .tc_buton:hover , .share_btn:hover{ background-position:left bottom}
+.tcnr .tc_share a{ display:inline-block; width:16px; height:16px; vertical-align:-3px; background-repeat:no-repeat}
+.tcnr a{ color:#008CD6; text-decoration:underline}
+.tc_share a.ic_tent{ background-image:url('../../images/zt/ic_tent.png')}
+.tc_share a.ic_sina{ background-image:url('../../images/zt/ic_sina.png')}
+.tc_share a.ic_ren{ background-image:url('../../images/zt/ic_ren.png')}
+.pb5{ padding-bottom:5px;}
+.ml20{ margin-left:20px;}
+.ver_al{vertical-align: top !important;}
+.tcdiv_warp{ background:url(../../images/zt/migu_wa.png) no-repeat 20px 10px; padding:20px 0 0 105px; height:85px;}
+.share_btn{ width:180px; background:url(../../images/zt/share_btn.png) no-repeat 0 0;}
+
+
+
+
+
+
+
+
+
