@@ -33,8 +33,8 @@ public class Singer implements java.io.Serializable {
     private String mv;
     private String initial;
     private String description;
-    private Set albumses = new HashSet(0);
-    private Set songs = new HashSet(0);
+    private Set albumses ;
+    private Set songs;
 
     public Singer() {
     }
@@ -176,5 +176,12 @@ public class Singer implements java.io.Serializable {
     public void setSongs(Set songs) {
         this.songs = songs;
     }
+
+    @Override
+    public String toString() {
+        return "Singer [singerid=" + singerid + "]";
+    }
+    
+    
 
 }

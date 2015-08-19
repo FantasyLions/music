@@ -1,35 +1,52 @@
 package com.migu.dao.Imp;
 
 
-import javax.annotation.Resource;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
+
 import com.migu.dao.SingerDao;
 import com.migu.dto.Singer;
+import com.migu.utils.dao.HibernateDao;
 
 @Repository("singerDao")
-public class SingerDaoImp extends HibernateDaoSupport implements SingerDao{
+public class SingerDaoImp extends HibernateDao<Singer> implements SingerDao{
 
-    public void insertSinger( Object o ) {
-        getHibernateTemplate().save( o );
-        //return false;
-    }
 
-    public boolean delSinger( Singer singer ) {
-        // TODO Auto-generated method stub
-        return false;
+    @Override
+    public Singer saveObject(Singer singer) {
+        save( singer );
+        return null;
     }
 
-    public boolean getSinger(int singerId) {
-        // TODO Auto-generated method stub
-        return false;
+    @Override
+    public void removeObject(Serializable id) {
+        remove(id);
     }
-    
-    @Resource(name="sessionFactory")
-    public void setSessionFactory0(SessionFactory sessionFactory){  
-        super.setSessionFactory(sessionFactory);  
+
+    @Override
+    public void updateObject(Singer singer) {
+        update( singer );
     }
+
+    @Override
+    public Singer getObject(Serializable id) {
+        return get( id );
+    }
+
+    @Override
+    public List<Singer> listObjects(Singer singer) {
+        List<Object> values = new ArrayList<Object>();
+        String hql = getHqlFindStr( "Singer", singer, values );
+        return find( hql, values );
+    }
+
+//    @Override
+//    public List<Singer> pageObject(Singer singer, Integer pageIndex, Integer pageSize) {
+//        return pageObject( singer, pageIndex, pageSize );
+//    }
 
 }

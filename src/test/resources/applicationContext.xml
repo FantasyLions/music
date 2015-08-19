@@ -16,11 +16,6 @@
 
     <bean id="sessionFactory"
         class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-        <property name="mappingLocations">
-          <list>
-            <value>classpath*:com/migu/dto/*.hbm.xml</value>
-          </list>
-        </property>
         <property name="configLocation"
             value="classpath:hibernate.cfg.xml">
         </property>
@@ -28,7 +23,7 @@
     
     
     <!-- 使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入 -->
-    <context:component-scan base-package="com.migu.dao.Imp;com.migu.service.Imp" />
+    <context:component-scan base-package="com.migu.dao.Imp;com.migu.service" />
     <!-- 事务管理器 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
