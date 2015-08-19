@@ -104,10 +104,7 @@ public class SingerDaoTest {
     
     @Test
     public void test() {
-        Class<SingerService> clazz = SingerService.class;
         ctx = new ClassPathXmlApplicationContext( "applicationContext.xml" );
-        String className = clazz.getSimpleName();
-        String clazzName = className.substring( 0, 1 ).toLowerCase() + className.substring( 1 );
         BaseService sd = (BaseService)ctx.getBean("singerService");
         Singer singer = new Singer();
         singer.setBirthday("asdf");
