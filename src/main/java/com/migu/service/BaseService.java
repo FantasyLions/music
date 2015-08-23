@@ -5,15 +5,15 @@ import java.util.List;
 
 import com.migu.dto.Singer;
 
-public interface BaseService {
+public interface BaseService<T> {
 
-    public void saveObject( Singer singer );
+    public void saveObject( T t );
     
-    public Singer getSinger( Serializable id );
+    public T getObject( Serializable id );
     
-    public void updateSinger( Singer singer );
+    public void updateObject( T t );
     
-    public void removeSinger( Serializable id );
+    public void removeObject( Serializable id );
     
-    public List<Singer> pageSinger(Singer singer, Integer pageIndex, Integer pageSize);
+    public List<T> pageObject(T t, Integer pageIndex, Integer pageSize);
 }

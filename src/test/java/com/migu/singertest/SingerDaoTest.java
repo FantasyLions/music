@@ -95,9 +95,9 @@ public class SingerDaoTest {
         
         singer.setBirthday("地球");
         singer.setSingerid(20);
-        sd.updateSinger(singer);
+//        sd.updateSinger(singer);
         
-        sd.removeSinger(19);
+//        sd.removeSinger(19);
         
        
     }
@@ -111,8 +111,8 @@ public class SingerDaoTest {
         singer.setBirthplace("asdfwer");
         singer.setGender("asdf");
         singer.setName("sdf");
-        List<Singer> singers = sd.pageSinger( singer, 1, 3 );
-        System.out.println( singers );
+//        List<Singer> singers = sd.pageSinger( singer, 1, 3 );
+//        System.out.println( singers );
     }
 
 }

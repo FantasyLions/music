@@ -2,10 +2,8 @@ package com.migu.dao.Imp;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.migu.dao.SingerDao;
@@ -15,38 +13,34 @@ import com.migu.utils.dao.HibernateDao;
 @Repository("singerDao")
 public class SingerDaoImp extends HibernateDao<Singer> implements SingerDao{
 
-
     @Override
     public Singer saveObject(Singer singer) {
-        save( singer );
-        return null;
+        Serializable id = this.save( singer );
+        return this.get(id);
     }
 
     @Override
     public void removeObject(Serializable id) {
-        remove(id);
+        this.remove(id);
     }
 
     @Override
-    public void updateObject(Singer singer) {
-        update( singer );
+    public void updateObject(Singer t) {
+        this.updateObject(t);
     }
 
     @Override
     public Singer getObject(Serializable id) {
-        return get( id );
+        return this.getObject(id);
     }
 
     @Override
-    public List<Singer> listObjects(Singer singer) {
-        List<Object> values = new ArrayList<Object>();
-        String hql = getHqlFindStr( "Singer", singer, values );
-        return find( hql, values );
+    public List<Singer> listObjects(Singer t) {
+        return this.listObjects(t);
     }
 
-//    @Override
-//    public List<Singer> pageObject(Singer singer, Integer pageIndex, Integer pageSize) {
-//        return pageObject( singer, pageIndex, pageSize );
-//    }
+
+    
+
 
 }

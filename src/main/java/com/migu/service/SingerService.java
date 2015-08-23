@@ -11,7 +11,7 @@ import com.migu.dao.SingerDao;
 import com.migu.dto.Singer;
 
 @Service("singerService")
-public class SingerService implements BaseService{
+public class SingerService implements BaseService<Singer>{
 
     @Resource(name="singerDao")
     private SingerDao singerDao;
@@ -19,29 +19,30 @@ public class SingerService implements BaseService{
     public void setSingerDao(SingerDao singerDao) {
         this.singerDao = singerDao;
     }
-    
+
     @Override
     public void saveObject(Singer singer) {
         singerDao.saveObject(singer);
+        
     }
 
     @Override
-    public Singer getSinger(Serializable id) {
+    public Singer getObject(Serializable id) {
         return singerDao.getObject(id);
     }
 
     @Override
-    public void updateSinger(Singer singer) {
-        singerDao.updateObject(singer);
+    public void updateObject(Singer singer) {
+        singerDao.updateObject( singer );
     }
 
     @Override
-    public void removeSinger(Serializable id) {
+    public void removeObject(Serializable id) {
         singerDao.removeObject(id);
     }
 
     @Override
-    public List<Singer> pageSinger(Singer singer, Integer pageIndex, Integer pageSize) {
+    public List<Singer> pageObject(Singer singer, Integer pageIndex, Integer pageSize) {
         return singerDao.pageObject( singer, pageIndex, pageSize);
     }
     

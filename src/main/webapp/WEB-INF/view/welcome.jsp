@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="refresh" content="0; url="${basePath}/index.html">
+<meta http-equiv="refresh" content="0; url=toIndex.html">
 <title>音乐网</title>
 </head>
 <body>
