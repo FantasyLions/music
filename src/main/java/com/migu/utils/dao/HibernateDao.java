@@ -106,6 +106,148 @@ public class HibernateDao<T> extends HibernateDaoSupport{
         return null;
     }
     
+    /**
+     * eg:from className o where 1 = 1 and o.filed1 = ? and o.filed2 = ?;
+     * @param ClassName     类名
+     * @param entity        实体类实例
+     * @param values        各个属性值
+     * @return              hql(String)
+     */
+    public String getHqlFindStr( String ClassName, T entity, List<Object> values ) {
+    	StringBuilder hql = getHqlStr( entity, values, true, "o" );
+    	return hql.toString();
+    }
+    
+    /**
+     * eg:update className o set o.filed1 = ?, o.filed2 = ?;
+     * @param ClassName     类名
+     * @param entity        实体类实例
+     * @param values        各个属性值
+     * @return              hql(String)
+     */
+    public String getHqlUpdateStr( String ClassName, T entity, List<Object> values ) {
+    	StringBuilder hql = getHqlStr( entity, values, false, "o" );
+    	return hql.toString();
+    }
+    
+    /**
+     * get any entity hql
+     * eg1-update: update className o set filed1 = ?, filed2 = ?
+     * eg2-find  : from className o where 1 = 1 and filed1 = ? and filed2 = ?
+     * {@link #getPartStr(Class, Object, List, StringBuilder, String, boolean)} 
+     * @param entity
+     * @param values
+     * @param bFind
+     * @param alias
+     * @return
+     */
+    public StringBuilder getHqlStr( T entity, List<Object> values, boolean bFind, String alias ) {
+    	if ( alias == null || alias.isEmpty() ) 
+    		alias = "o";
+    	StringBuilder hql = bFind ? new StringBuilder("from "+entity.getClass().getSimpleName()+" " + alias + "where 1 = 1") : 
+    			new StringBuilder("update "+entity.getClass().getSimpleName()+" " + alias + "set ");
+    	StringBuilder hqlStr = bFind ? getPartFindStr( entity, values, alias ) : getPartUpdateStr(entity, values, alias);
+    	hql.append(hqlStr);
+    	return hql;
+    }
+    
+    /**
+     * {@link #getPartStr(Class, Object, List, StringBuilder, String, boolean)}
+     * @param entity
+     * @param values
+     * @param alias
+     * @return
+     */
+    public StringBuilder getPartFindStr( T entity, List<Object> values, String alias ) {
+    	StringBuilder hql = new StringBuilder();
+    	Class clazz = entity.getClass();
+    	return getPartStr( clazz, entity, values, hql, alias, true );
+    }
+    
+    /**
+     * {@link #getPartStr(Class, Object, List, StringBuilder, String, boolean)}
+     * @param entity
+     * @param values
+     * @param alias
+     * @return
+     */
+    public StringBuilder getPartUpdateStr( T entity, List<Object> values, String alias ) {
+    	StringBuilder hql = new StringBuilder();
+    	Class clazz = entity.getClass();
+    	return getPartStr( clazz, entity, values, hql, alias, false );
+    }
+    
+    /**
+     * part hql 
+     * eg1-update:filed1 = ?, filed2 = ?
+     * eg2-find  :filed1 = ? and filed2 = ?  
+     * {@link #getPartStr(Class, Object, List, StringBuilder, String, boolean)}
+     * @param clazz
+     * @param entity
+     * @param values
+     * @param hql
+     * @param alias
+     * @param bFind
+     * @return
+     */
+    public StringBuilder getPartStr( Class clazz, T entity, List<Object> values, StringBuilder hql, String alias, boolean bFind ) {
+    	Field[] fields = clazz.getDeclaredFields();
+        try {
+            Object returnValue = null;String fieldsName = null ,preStr = null ,subStr = null;
+            if ( bFind ) {
+            	preStr = "and "+alias+".";
+            	subStr = " = ? ";
+            } else {
+            	preStr = alias+".";
+            	subStr = " = ? ,";
+            }
+            for ( Field field : fields ) {
+                fieldsName = field.getName();
+                returnValue = findGetter( clazz, fieldsName ).invoke(entity, null);
+                if ( returnValue != null ) {
+                    hql.append( preStr + fieldsName + subStr );
+                    values.add( returnValue );
+                }
+            }
+            Class superClass = clazz.getSuperclass();
+            if ( superClass != null ) {
+            	getPartStr( superClass, entity, values, hql, alias, bFind );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        if ( bFind && !values.isEmpty() ) {
+        	int lastComma = hql.lastIndexOf(",");
+        	hql.replace(lastComma, lastComma+1, "");
+        }
+        return values.isEmpty() ? null : hql;
+    }
+    
+//    public Method findGetter( Method[] methods, String fildsName ) {
+//        for (Method method : methods ) {
+//            if ( method.getName().equalsIgnoreCase("get"+fildsName) ) {
+//                return method;
+//            }
+//        }
+//        return null;
+//    }
+    
+    /**
+     * get filed getter
+     * @param clazz
+     * @param fildsName
+     * @return
+     */
+    public Method findGetter( Class<T> clazz, String fildsName ) {
+		Method method= null;
+	    try{
+		  method = clazz.getMethod( "get"+fildsName );
+		} catch( Exception e) {
+		  
+		}
+        return method;
+    }
     
     
     @Resource(name="sessionFactory")
